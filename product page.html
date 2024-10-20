@@ -39,8 +39,15 @@
             <button type="submit" class="btn btn-primary mt-4" id="button">Submit</button>
         </form>
         <div class="alert alert-danger" role="alert" id="exists_alert">Entry already exits</div>
-        
-        <buttom class="btn btn-primary mt-4" id="Update">find and update information</buttom>
+        <div class="alert alert-success" role="alert" id="upload_alert">information successfully uploaded!</div>
+
+        <div class="container mt-4">
+            <form>
+                <input type="number" class="form-control" id="find" placeholder="enter ID to find existing product">
+                <button type="button" class="btn btn-primary mt-4" id="Update" >find information</button>
+            </form>
+
+        </div>
         
         
 
@@ -109,18 +116,34 @@
                 $("#Price_alert").removeClass("alert");
                 return false;
             }
+            
             var info = JSON.stringify(productInfo);
-            if (!productDataBase.includes(info)) {
-                event.preventDefault();
-                productDataBase.push(info);
-                $("#exists_alert").addClass("alert");
-                $("#form")[0].reset();
-            }
-            else {
-                $("#exists_alert").removeClass("alert");
-            }
+            if (productDataBase.includes(info)) {
+                    $("#exists_alert").removeClass("alert");
+                }
+                else {
+                    event.preventDefault();
+                    productDataBase.push(info);
+                    $("#exists_alert").addClass("alert");
+                    $("#form")[0].reset();
+                    $("#upload_alert").removeClass("alert");
+                }
+                
+                
             event.preventDefault();
         }
+        $(document).ready(function() {
+            $("#Update").click(function() {
+            for (var i = 0; i < productDataBase.length; i++) {
+                if (productDataBase[i].ID  == $("#find").value) {
+                    $("#ID").value = productInfo.ID;
+
+                }
+            }
+        });
+        });
+
+            
 
                 
         
