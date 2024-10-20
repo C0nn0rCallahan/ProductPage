@@ -42,53 +42,21 @@
         <div class="alert alert-success" role="alert" id="upload_alert">information successfully uploaded!</div>
 
         <div class="container mt-4">
-            <form>
-                <input type="number" class="form-control" id="find" placeholder="enter ID to find existing product">
-                <button type="button" class="btn btn-primary mt-4" id="Update" >find information</button>
-            </form>
-
+            <h3>Search Products</h3>
+            <input type="text" class="form-control" id="searchTerm" placeholder="Enter description or ID">
+            <button type="button" class="btn btn-secondary mt-4" id="searchBtn">Search Products</button>
         </div>
         
         
-
+        <output id="searchResults" class="mt-3"></output>
         <output id="display"></output>
 
     </div>
     <script>
-        $("#ID").on('input', function() {
-            if (document.getElementById("ID").value != "") {
-                $("#ID_alert").addClass("alert");
-                return 
-            }
-        });
-        $("#Description").on('input', function() {
-            if (document.getElementById("Description").value != "") {
-                $("#Desc_alert").addClass("alert");
-                return 
-            }
-        });
-        $("#Category").on('input', function() {
-            if (document.getElementById("Category").value != "") {
-                $("#Cat_alert").addClass("alert");
-                return 
-            }
-        });
-        $("#Measure").on('input', function() {
-            if (document.getElementById("Measure").value != "") {
-                $("#M_alert").addClass("alert");
-                return 
-            }
-        });
-        $("#price").on('input', function() {
-            if (document.getElementById("price").value != "") {
-                $("#Price_alert").addClass("alert");
-                return 
-            }
-        });
         var productDataBase = [];
-        var productInfo = {};
+        
         function validate() {
-            productInfo = {
+            var productInfo = {
                 "ID": document.getElementById("ID").value,
                 "Description": document.getElementById("Description").value,
                 "Category": document.getElementById("Category").value,
@@ -96,6 +64,7 @@
                 "Price": document.getElementById("price").value,
                 "Weight": document.getElementById("Weight").value
             };
+            
             if (productInfo.ID == "") {
                 $("#ID_alert").removeClass("alert");
                 return false;
@@ -117,42 +86,94 @@
                 return false;
             }
             
-            var info = JSON.stringify(productInfo);
-            if (productDataBase.includes(info)) {
-                    $("#exists_alert").removeClass("alert");
-                }
-                else {
-                    event.preventDefault();
-                    productDataBase.push(info);
-                    $("#exists_alert").addClass("alert");
-                    $("#form")[0].reset();
-                    $("#upload_alert").removeClass("alert");
-                }
-                
-                
+            var existingProduct = productDataBase.find(product => product.ID == productInfo.ID);
+            if (existingProduct) {
+                $("#exists_alert").removeClass("alert");
+                return false;
+            }
+           
+            productDataBase.push(productInfo);
+            $("#exists_alert").addClass("alert");
+            $("#form")[0].reset();
+            $("#upload_alert").removeClass("alert");
+
             event.preventDefault();
+            return true;
         }
+        
         $(document).ready(function() {
             $("#Update").click(function() {
-            for (var i = 0; i < productDataBase.length; i++) {
-                if (productDataBase[i].ID  == $("#find").value) {
-                    $("#ID").value = productInfo.ID;
+                var searchID = $("#findID").val();
+                var product = productDataBase.find(product => product.ID == searchID);
 
+                if (product) {
+                    $("#ID").val(product.ID);
+                    $("#Description").val(product.Description);
+                    $("#Category").val(product.Category);
+                    $("#Measure").val(product.UnitOfMeasure);
+                    $("#price").val(product.Price);
+                    $("#Weight").val(product.Weight);
+
+                    $("#upload_alert").addClass("alert");
+                    $("#exists_alert").addClass("alert");
+                } else {
+                    $("#display").html('<div class="alert alert-danger">Product not found!</div>');
                 }
+            });
+        });
+        
+        $(document).ready(function() {
+            $("#searchBtn").click(function() {
+                var searchTerm = $("#searchTerm").val().toLowerCase();
+                var searchResults = productDataBase.filter(product => 
+                    product.ID.includes(searchTerm) ||
+                    product.Category.toLowerCase().includes(searchTerm)
+                );
+                
+                if (searchResults.length > 0) {
+                    var resultHTML = '<h4>Search Results:</h4>';
+                    searchResults.forEach(product => {
+                        resultHTML += `<div>
+                            <strong>ID:</strong> ${product.ID} <br>
+                            <strong>Description:</strong> ${product.Description} <br>
+                            <strong>Category:</strong> ${product.Category} <br>
+                            <strong>Unit of Measure:</strong> ${product.UnitOfMeasure} <br>
+                            <strong>Price:</strong> ${product.Price} <br>
+                            <strong>Weight:</strong> ${product.Weight} <br><br>
+                        </div>`;
+                    });
+                    $("#searchResults").html(resultHTML);
+                } else {
+                    $("#searchResults").html('<div class="alert alert-danger">No products found matching your search.</div>');
+                }
+            });
+        });
+       
+        $("#ID").on('input', function() {
+            if (document.getElementById("ID").value != "") {
+                $("#ID_alert").addClass("alert");
             }
         });
+        $("#Description").on('input', function() {
+            if (document.getElementById("Description").value != "") {
+                $("#Desc_alert").addClass("alert");
+            }
         });
-
-            
-
-                
-        
-        
-        
-
-
-        
-
+        $("#Category").on('input', function() {
+            if (document.getElementById("Category").value != "") {
+                $("#Cat_alert").addClass("alert");
+            }
+        });
+        $("#Measure").on('input', function() {
+            if (document.getElementById("Measure").value != "") {
+                $("#M_alert").addClass("alert");
+            }
+        });
+        $("#price").on('input', function() {
+            if (document.getElementById("price").value != "") {
+                $("#Price_alert").addClass("alert");
+            }
+        });
     </script>
 </body>
 </html>
