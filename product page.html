@@ -223,5 +223,76 @@
             }
         });
     </script>
+<!--shopping cart-->
+    <div class="container mt-4">
+    <h3>Shopping Cart</h3>
+    <div id="cartContents"></div>
+    <div><strong>Total Price:</strong> $<span id="totalPrice">0.00</span></div>
+</div>
+
+<script>
+    var shoppingCart = [];
+    var totalPrice = 0;
+
+    
+    function addToCart(productID) {
+        var product = productDataBase.find(p => p.ID == productID);
+        if (product) {
+            shoppingCart.push(product);
+            updateCart();
+        }
+    }
+
+    
+    function removeFromCart(productID) {
+        shoppingCart = shoppingCart.filter(p => p.ID != productID);
+        updateCart();
+    }
+
+
+    function updateCart() {
+        var cartHTML = '';
+        totalPrice = 0;
+
+        shoppingCart.forEach(product => {
+            cartHTML += `<div class="border p-2 mb-2">
+                <strong>ID:</strong> ${product.ID} <br>
+                <strong>Description:</strong> ${product.Description} <br>
+                <strong>Price:</strong> $${product.Price} <br>
+                <button class="btn btn-danger btn-sm mt-2" onclick="removeFromCart(${product.ID})">Remove from Cart</button>
+            </div>`;
+            totalPrice += parseFloat(product.Price);
+        });
+
+        $("#cartContents").html(cartHTML);
+        $("#totalPrice").text(totalPrice.toFixed(2));
+    }
+
+    $(document).ready(function() {
+        
+        $("#searchBtn").click(function() {
+            var searchTerm = $("#searchTerm").val().toLowerCase();
+            var searchResults = productDataBase.filter(product => 
+                product.ID.toString().includes(searchTerm) ||
+                product.Description.toLowerCase().includes(searchTerm)
+            );
+
+            if (searchResults.length > 0) {
+                var resultHTML = '<h4>Search Results:</h4>';
+                searchResults.forEach(product => {
+                    resultHTML += `<div class="border p-2 mb-2">
+                        <strong>ID:</strong> ${product.ID} <br>
+                        <strong>Description:</strong> ${product.Description} <br>
+                        <strong>Price:</strong> $${product.Price} <br>
+                        <button class="btn btn-primary btn-sm mt-2" onclick="addToCart(${product.ID})">Add to Cart</button>
+                    </div>`;
+                });
+                $("#searchResults").html(resultHTML);
+            } else {
+                $("#searchResults").html('<div class="alert alert-danger">No products found matching your search.</div>');
+            }
+        });
+    });
+</script>
 </body>
 </html>
