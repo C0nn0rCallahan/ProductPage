@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Billing and Returns Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h2 {
+            color: #333;
+        }
+        .container {
+            margin-bottom: 20px;
+        }
+        input, button {
+            padding: 10px;
+            margin-top: 5px;
+            width: 100%;
+        }
+        .product-list {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Billing and Returns</h1>
+
+    
+    <section class="container">
+        <h2>Billing Details</h2>
+        <form id="billingForm">
+            <label for="fullName">Full Name:</label>
+            <input type="text" id="fullName" name="fullName" required>
+
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="address" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="phone">Phone:</label>
+            <input type="tel" id="phone" name="phone" required>
+
+            <button type="submit">Submit Billing Details</button>
+        </form>
+    </section>
+
+    <section class="container">
+        <h2>Handle Returns</h2>
+
+        <label for="searchProduct">Search Product:</label>
+        <input type="text" id="searchProduct" placeholder="Enter product name or ID">
+
+        <button onclick="searchProduct()">Search</button>
+
+        <div id="productList" class="product-list"></div>
+    </section>
+
+    <script>
+        document.getElementById('billingForm').addEventListener('submit', function(event) {
+            event.preventDefault(); 
+			
+            const fullName = document.getElementById('fullName').value;
+            const address = document.getElementById('address').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+
+            alert(`Billing Details Submitted!\n\nName: ${fullName}\nAddress: ${address}\nEmail: ${email}\nPhone: ${phone}`);
+        });
+
+        function searchProduct() {
+            const searchValue = document.getElementById('searchProduct').value.trim();
+
+            if (searchValue) {
+                const products = [
+                    { id: 1, name: "Product 1" },
+                    { id: 2, name: "Product 2" },
+                    { id: 3, name: "Product 3" }
+                ];
+                
+                const matchedProducts = products.filter(product => product.name.toLowerCase().includes(searchValue.toLowerCase()));
+
+                let productList = document.getElementById('productList');
+                productList.innerHTML = "";
+
+                if (matchedProducts.length > 0) {
+                    matchedProducts.forEach(product => {
+                        let productItem = document.createElement('div');
+                        productItem.innerHTML = `<p>${product.name} (ID: ${product.id})</p><button onclick="addProductToReturn(${product.id})">Add for Return</button>`;
+                        productList.appendChild(productItem);
+                    });
+                } else {
+                    productList.innerHTML = "<p>No matching products found.</p>";
+                }
+            }
+        }
+
+        function addProductToReturn(productId)
