@@ -1,0 +1,198 @@
+@charset "utf-8";
+@media screen and (min-width: 1401px) {
+	head {
+		background-color: gray;
+	}
+	body {
+		background-color: #0B027E;
+	}	
+	p {
+		
+		text-align: center;
+		font-size:70px;
+	}
+	.wrapper0 {
+		background-color: white;
+		font-size: 40px;
+		text-align: center;
+		overflow: hidden;
+	}
+	.wrapper0>div {
+		background-color: #0B027E;
+	}
+	.one {
+		background-color: #0B027E; 
+		
+	}
+	#shoppingCart {
+		position: absolute;
+		right: 0px;
+		top: 0px;
+	}
+	#navbar {
+		top: 15px;
+	}
+	
+@keyframes color-change {
+	50% {
+		color: #0207FC;
+	}
+	50% {
+		color: white;
+	}
+
+}
+.wrapper {
+	text-align: center;
+	font-size: 50px;
+	
+	display: grid;
+	grid-template-columns: repeat(2,1fr);
+	border-style: double;
+	border-color: white;
+	
+}
+.wrapper1 {
+	text-align: center;
+	font-size: 50px;
+	
+	display: grid;
+	grid-template-columns: repeat(2,1fr);
+	border-style: double;
+	border-color: white;
+}
+}
+@media screen and (min-width: 1024px)  {
+	head {
+		height: 30px;
+	}
+	body {
+		background-color: #0B027E;
+	}	
+	p {
+		
+		text-align: center;
+		font-size:50px;
+	}
+	.wrapper0 {
+		display: grid;
+		grid-template-columns: repeat(4,1fr);
+		border-bottom: 2px solid white;
+		border-top: 2px solid white;
+		border-right: 2px solid white;
+		border-left: 2px solid white;
+		grid-gap: 2px 2px;
+		font-size: 20px;
+		
+		text-align: center;
+		overflow: hidden;
+	}
+	.wrapper0>div {
+		background-color: #0B027E;
+	}
+	.one {
+		background-color: #0B027E; 
+		color: white;
+	}
+	#shoppingCart {
+		position: absolute;
+		right: 0px;
+		top: 0px;
+	}
+	
+@keyframes color-change {
+	50% {
+		color: #0207FC;
+	}
+	50% {
+		color: white;
+	}
+
+}
+.wrapper {
+	text-align: center;
+	font-size: 30px;
+	
+	display: grid;
+	grid-template-columns: repeat(2,1fr);
+	border-style: double;
+	border-color: white;
+	
+}
+.wrapper1 {
+	text-align: center;
+	font-size: 30px;
+	
+	display: grid;
+	grid-template-columns: repeat(2,1fr);
+	border-style: double;
+	border-color: white;
+}
+}
+@media screen and (min-width: 320x) {
+	head {
+		height: 30px;
+	}
+	body {
+		background-color: #0B027E;
+	}	
+	p {
+		
+		text-align: center;
+		font-size:30px;
+	}
+	.wrapper0 {
+		display: grid;
+		grid-template-columns: repeat(4,1fr);
+		border-bottom: 2px solid white;
+		border-top: 2px solid white;
+		border-right: 2px solid white;
+		border-left: 2px solid white;
+		grid-gap: 2px 2px;
+		font-size: 15px;
+		
+		text-align: center;
+		overflow: hidden;
+	}
+	.wrapper0>div {
+		background-color: #0B027E;
+	}
+	.one {
+		background-color: #0B027E; 
+		
+	}
+	#shoppingCart {
+		position: absolute;
+		right: 0px;
+		top: 0px;
+	}
+
+@keyframes color-change {
+	50% {
+		color: #0207FC;
+	}
+	50% {
+		color: white;
+	}
+
+}
+.wrapper {
+	text-align: center;
+	font-size: 15px;
+	
+	display: grid;
+	grid-template-columns: repeat(2,1fr);
+	border-style: double;
+	border-color: white;
+	
+}
+.wrapper1 {
+	text-align: center;
+	font-size: 15px;
+	
+	display: grid;
+	grid-template-columns: repeat(2,1fr);
+	border-style: double;
+	border-color: white;
+}
+}

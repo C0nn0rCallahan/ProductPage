@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Shopping cart</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css"> 
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <style>
+        .alert {
+           display: none; 
+        }
+        h2 {
+            color: #333;
+        }
+        .container {
+            margin-bottom: 20px;
+        }
+        #billingButton {
+            padding: 10px;
+            margin-top: 5px;
+            width: 100%;
+        }
+        input {
+            padding: 10px;
+            margin-top: 5px;
+            width: 100%;
+        }
+        .product-list {
+            margin-top: 10px;
+        }
+      </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" id="navbar">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="#">menu</a>
+			<button class="navbar toggler" type="button" data bs toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expand="false" aria-label="Toggle navigation">
+				<span class="navbar-togger-icon"></span>
+			
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav">
+                    <li>
+						<a class="nav-link active" aria-current="page" href="homePage.html">Home</a>
+					</li>
+					<li class="nav item">
+						<a class="nav-link active" aria-current="page" href="ist256_group9_storefront.html">sign up</a>
+					</li>
+				
+					<li>
+						<a class="nav-link active"  aria-current="page" href="ist256_group9_storefront (2).html">find products</a>
+					
+					</li>
+                    <li>
+						<a class="nav-link active"  aria-current="page" href="ShippingAndcart.html">shopping cart</a>
+					
+					</li>
+					
+					
+				</ul>
+			</div>
+		</div>
+	</nav>
+</body>
+<body>
+    <div class="container mt-4">
+        <h3>Shopping Cart</h3>
+        <div id="cartContents"></div>
+        <div><strong>Total Price:</strong> $<span id="totalPrice">0.00</span></div>
+    </div>
+<!-- Shipping Details Section -->
+        <div class="container mt-4">
+            <h3>Shipping Details</h3>
+            <form id="shippingForm" onsubmit="return validateShipping()" class="needs-validation" novalidate>
+                <label>Shipping Destination</label>
+                <input type="text" class="form-control" id="shippingDestination" placeholder="Enter destination address" required>
+                <div class="alert alert-danger" role="alert" id="dest_alert">Please enter a destination address</div>
+
+                <label>Shipping Carrier</label>
+                <select class="form-control" id="shippingCarrier" required>
+                    <option value="">Select Carrier</option>
+                    <option value="FedEx">FedEx</option>
+                    <option value="UPS">UPS</option>
+                    <option value="USPS">USPS</option>
+                    <option value="DHL">DHL</option>
+                </select>
+                <div class="alert alert-danger" role="alert" id="carrier_alert">Please select a carrier</div>
+
+                <label>Shipping Method</label>
+                <select class="form-control" id="shippingMethod" required>
+                    <option value="">Select Method</option>
+                    <option value="Standard">Standard</option>
+                    <option value="Express">Express</option>
+                    <option value="Overnight">Overnight</option>
+                </select>
+                <div class="alert alert-danger" role="alert" id="method_alert">Please select a shipping method</div>
+
+                <button type="submit" class="btn btn-primary mt-4" id="ShippingButton">Submit Shipping Details</button>
+            </form>
+            
+        </div>
+    
+</body>
+<body>   
+    <section class="container">
+        <h2>Billing Details</h2>
+        <form id="billingForm">
+            <label for="fullName">Full Name:</label>
+            <input type="text" id="fullName" name="fullName" required>
+
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="address" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="phone">Phone:</label>
+            <input type="tel" id="phone" name="phone" required>
+
+            <button type="submit" id="billingButton">Submit Billing Details</button>
+        </form>
+    </section>
+
+    <section class="container">
+        <h2>Handle Returns</h2>
+
+        <label for="searchProduct">Search Product:</label>
+        <input type="text" id="searchProduct" placeholder="Enter product name or ID">
+
+        <button onclick="searchProduct()" id="billingButton">Search</button>
+
+        <div id="productList" class="product-list"></div>
+    </section>
+</body> 
+<script src="script.js"></script>
+</html>

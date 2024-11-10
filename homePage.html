@@ -3,103 +3,22 @@
 <head>
 <meta charset="utf-8">
 <title>myStore</title>
-<link rel="stylesheet" type="text/css" href="StoreStyle.css">
-<style>
-    @media screen and (min-width: 1401px) {
-        body {
-            background-color: #0B027E;
-        }	
-        p {
-            
-            text-align: center;
-            font-size:70px;
-        }
-        .wrapper0 {
-            background-color: white;
-            font-size: 40px;
-            text-align: center;
-            overflow: hidden;
-        }
-        .wrapper0>div {
-            background-color: #0B027E;
-        }
-        .one {
-            background-color: #0B027E; 
-            
-        }
-    }
-    @media screen and (min-width: 1024px)  {
-        body {
-            background-color: #0B027E;
-        }	
-        p {
-            
-            text-align: center;
-            font-size:50px;
-        }
-        .wrapper0 {
-            display: grid;
-            grid-template-columns: repeat(4,1fr);
-            border-bottom: 2px solid white;
-            border-top: 2px solid white;
-            border-right: 2px solid white;
-            border-left: 2px solid white;
-            grid-gap: 2px 2px;
-            font-size: 20px;
-            
-            text-align: center;
-            overflow: hidden;
-        }
-        .wrapper0>div {
-            background-color: #0B027E;
-        }
-        .one {
-            background-color: #0B027E; 
-            color: white;
-        }
-    }
-    @media screen and (min-width: 320x) {
-        body {
-            background-color: #0B027E;
-        }	
-        p {
-            
-            text-align: center;
-            font-size:30px;
-        }
-        .wrapper0 {
-            display: grid;
-            grid-template-columns: repeat(4,1fr);
-            border-bottom: 2px solid white;
-            border-top: 2px solid white;
-            border-right: 2px solid white;
-            border-left: 2px solid white;
-            grid-gap: 2px 2px;
-            font-size: 15px;
-            
-            text-align: center;
-            overflow: hidden;
-        }
-        .wrapper0>div {
-            background-color: #0B027E;
-        }
-        .one {
-            background-color: #0B027E; 
-            
-        }
-        
-    }
-        
-        
-    </style>
+<link rel="stylesheet" type="text/css" href="HomePageStyle.css">
 </head>
 <style>
 </style>
+<script src="script.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<h1>My electronics store</h1>
+<div  id="shoppingCart">
+    <h3>Shopping Cart</h3>
+    <div id="cartContents"></div>
+    <div><strong>Total Price:</strong> $<span id="totalPrice">0.00</span></div>
+</div>
 </head>
 <body>
-	<h1>My electronics store</h1>
-	<nav class="navbar navbar-expand-lg navbar-light bg-light" >
+    
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" id="navbar">
 		<div class="container-fluid">
 			<a class="navbar-brand" href="#">menu</a>
 			<button class="navbar toggler" type="button" data bs toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expand="false" aria-label="Toggle navigation">
@@ -116,7 +35,11 @@
 					</li>
 				
 					<li>
-						<a class="nav-link active"  aria-current="page" href="ist256_group9_storefront (2).html">Shopping page</a>
+						<a class="nav-link active"  aria-current="page" href="ist256_group9_storefront (2).html">find products</a>
+					
+					</li>
+					<li>
+						<a class="nav-link active"  aria-current="page" href="ShippingANdcart.html">shopping cart</a>
 					
 					</li>
 					
